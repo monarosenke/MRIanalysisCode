@@ -6,9 +6,9 @@
 % with filename specified in line 12
 
 clearvars
-subj = {'s4_kw_new','s5_kgs', 's6_nd_new', 's10_mh_new','s12_mf_new','s13_mt_new','s14_gt_new', 's15_mu_new','s16_mw_new','s17_mp_new','s18_xw_new', 's19_jw_new', 's20_gtg_new','s21_kk_new'};
+subj = {''};
 rois = {'lh_MPM_FG2','lh_Wang_V02','rh_MPM_FG2','rh_Wang_V02'};
-savename = '/Volumes/rosenke/projects/facehandsNew/results/voxelBetas_control.mat';      %voxelBetas_ventral_control';
+savename = '/Volumes/rosenke/projects/facehandsNew/results/voxelBetas_control.mat';
 
 
 roi_glm = [];
@@ -24,8 +24,7 @@ for s = 1:length(subj)
     cd(subj{s})
     hI = initHiddenInplane('GLMs',1,rois); % open an hidden inplane view with the GLM datatype
     
-    % find the correct GLM (not trusting that the order is the same but
-    % search by name
+    % find the correct GLM
     temp = extractfield(dataTYPES(hI.curDataType).scanParams,'annotation');
     IndexC = strfind(temp, 'facehands');
     Index = find(not(cellfun('isempty', IndexC)));
